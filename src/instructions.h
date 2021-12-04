@@ -6,42 +6,41 @@
 #include <regex.h> 
 
 // RE strings
-char CLS[] = "^\\s*CLS\\s*$";
-char RET[] = "^\\s*RET\\s*$";
-char SYS_NNN[] = "^\\s*SYS\\s*[a-fA-F0-9]{1,3}\\s*$";
-char JP_NNN[] = "^\\s*JP\\s*[a-fA-F0-9]{1,3}\\s*$";
-char CALL_NNN[]= "^\\s*CALL\\s*[a-fA-F0-9]{1,3}\\s*$";
-char SE_V_NN[]= "^\\s*SE \\s*V[a-fA-F0-9]\\s*\\,\\s*[a-fA-F0-9]{1,2}\\s*$";
-char SNE_V_NN[]= "^\\s*SNE \\s*V[a-fA-F0-9]\\s*\\,\\s*[a-fA-F0-9]{1,2}\\s*$";
-char SE_V_V[]= "^\\s*SE \\s*V[a-fA-F0-9]\\s*\\,\\s*V[a-fA-F0-9]\\s*$";
-char LD_V_NN[]= "^\\s*LD \\s*V[a-fA-F0-9]\\s*\\,\\s*[a-fA-F0-9]{1,2}\\s*$";
-char ADD_V_NN[]= "^\\s*ADD \\s*V[a-fA-F0-9]\\s*\\,\\s*[a-fA-F0-9]{1,3}\\s*$";
-char LD_V_V[]= "^\\s*LD \\s*V[a-fA-F0-9]\\s*\\,\\s*V[a-fA-F0-9]\\s*$";
-char OR_V_V[]= "^\\s*OR \\s*V[a-fA-F0-9]\\s*\\,\\s*V[a-fA-F0-9]\\s*$";
-char AND_V_V[]= "^\\s*AND \\s*V[a-fA-F0-9]\\s*\\,\\s*V[a-fA-F0-9]\\s*$";
-char XOR_V_V[]= "^\\s*XOR \\s*V[a-fA-F0-9]\\s*\\,\\s*V[a-fA-F0-9]\\s*$";
-char ADD_V_V[]= "^\\s*ADD \\s*V[a-fA-F0-9]\\s*\\,\\s*V[a-fA-F0-9]\\s*$";
-char SUB_V_V[]= "^\\s*SUB \\s*V[a-fA-F0-9]\\s*\\,\\s*V[a-fA-F0-9]\\s*$";
-char SHR_V_V[]= "^\\s*SHR \\s*V[a-fA-F0-9]\\s*\\,\\s*V[a-fA-F0-9]\\s*$";
-char SUBN_V_V[]= "^\\s*SUBN \\s*V[a-fA-F0-9]\\s*\\,\\s*V[a-fA-F0-9]\\s*$";
-char SHL_V_V[]= "^\\s*SHL \\s*V[a-fA-F0-9]\\s*\\,\\s*V[a-fA-F0-9]\\s*$";
-char SNE_V_V[]= "^\\s*SNE \\s*V[a-fA-F0-9]\\s*\\,\\s*V[a-fA-F0-9]\\s*$";
-char LD_I_NNN[]= "^\\s*LD \\s*I\\s*\\,\\s*[a-fA-F0-9]{1,3}\\s*$";
-char JP_V0_NNN[]= "^\\s*JP \\s*V0\\s*\\,\\s*[a-fA-F0-9]{1,3}\\s*$";
-char RND_V_NN[]= "^\\s*RND \\s*V[a-fA-F0-9]\\s*\\,\\s*[a-fA-F0-9]{1,2}\\s*$";
-char DRW_V_V_N[]= "^\\s*DRW \\s*V[a-fA-F0-9]\\s*\\,\\s*V[a-fA-F0-9]\\s*,\\s*[a-fA-F0-9]\\s*$";
-char SKP_V[]= "^\\s*SKP \\s*V[a-fA-F0-9]\\s*$";
-char SKNP_V[]= "^\\s*SKNP \\s*V[a-fA-F0-9]\\s*$";
-char LD_V_DT[]= "^\\s*LD \\s*V[a-fA-F0-9]\\s*\\,\\s*DT\\s*$";
-char LD_V_K[]= "^\\s*LD \\s*V[a-fA-F0-9]\\s*\\,\\s*K\\s*$";
-char LD_DT_V[]= "^\\s*LD \\s*DT\\s*\\,\\s*V[a-fA-F0-9]\\s*$";
-char LD_ST_V[]= "^\\s*LD \\s*ST\\s*\\,\\s*V[a-fA-F0-9]\\s*$";
-char ADD_I_V[]= "^\\s*ADD \\s*I\\s*\\,\\s*V[a-fA-F0-9]\\s*$";
-char LD_F_V[]= "^\\s*LD \\s*F\\s*\\,\\s*V[a-fA-F0-9]\\s*$";
-char LD_B_V[]= "^\\s*LD \\s*B\\s*\\,\\s*V[a-fA-F0-9]\\s*$";
-char LD_I_V[]= "^\\s*LD \\s*\\[I\\]\\s*\\,\\s*V[a-fA-F0-9]\\s*$";
-char LD_V_I[]= "^\\s*LD \\s*V[a-fA-F0-9]\\s*\\,\\s*\\[I\\]\\s*$";
-char LD_V_Q[]= "^\\s*LD \\s*V[a-fA-F0-9]\\s*\\,\\s*\\[Q\\]\\s*$";
+char CLS[] = "^ *CLS *$";
+char RET[] = "^ *RET *$";
+char SYS_NNN[] = "^ *SYS *[a-fA-F0-9]\\{1,3\\} *$";
+char JP_NNN[] = "^ *JP *[a-fA-F0-9]\\{1,3\\} *$";
+char CALL_NNN[]= "^ *CALL *[a-fA-F0-9]\\{1,3\\} *$";
+char SE_V_NN[]= "^ *SE *V[a-fA-F0-9] *\\, *[a-fA-F0-9]\\{1,2\\} *$";
+char SNE_V_NN[]= "^ *SNE *V[a-fA-F0-9] *\\, *[a-fA-F0-9]\\{1,2\\} *$";
+char SE_V_V[]= "^ *SE *V[a-fA-F0-9] *\\, *V[a-fA-F0-9] *$";
+char LD_V_NN[]= "^ *LD *V[a-fA-F0-9] *\\, *[a-fA-F0-9]\\{1,2\\} *$";
+char ADD_V_NN[]= "^ *ADD *V[a-fA-F0-9] *\\, *[a-fA-F0-9]\\{1,2\\} *$";
+char LD_V_V[]= "^ *LD *V[a-fA-F0-9] *\\, *V[a-fA-F0-9] *$";
+char OR_V_V[]= "^ *OR *V[a-fA-F0-9] *\\, *V[a-fA-F0-9] *$";
+char AND_V_V[]= "^ *AND *V[a-fA-F0-9] *\\, *V[a-fA-F0-9] *$";
+char XOR_V_V[]= "^ *XOR *V[a-fA-F0-9] *\\, *V[a-fA-F0-9] *$";
+char ADD_V_V[]= "^ *ADD *V[a-fA-F0-9] *\\, *V[a-fA-F0-9] *$";
+char SUB_V_V[]= "^ *SUB *V[a-fA-F0-9] *\\, *V[a-fA-F0-9] *$";
+char SHR_V_V[]= "^ *SHR *V[a-fA-F0-9] *\\, *V[a-fA-F0-9] *$";
+char SUBN_V_V[]= "^ *SUBN *V[a-fA-F0-9] *\\, *V[a-fA-F0-9] *$";
+char SHL_V_V[]= "^ *SHL *V[a-fA-F0-9] *\\, *V[a-fA-F0-9] *$";
+char SNE_V_V[]= "^ *SNE *V[a-fA-F0-9] *\\, *V[a-fA-F0-9] *$";
+char LD_I_NNN[]= "^ *LD *I *\\, *[a-fA-F0-9]\\{1,3\\} *$";
+char JP_V0_NNN[]= "^ *JP *V0 *\\, *[a-fA-F0-9]\\{1,3\\} *$";
+char RND_V_NN[]= "^ *RND *V[a-fA-F0-9] *\\, *[a-fA-F0-9]\\{1,2\\} *$";
+char DRW_V_V_N[]= "^ *DRW *V[a-fA-F0-9] *\\, *V[a-fA-F0-9] *, *[a-fA-F0-9] *$";
+char SKP_V[]= "^ *SKP *V[a-fA-F0-9] *$";
+char SKNP_V[]= "^ *SKNP *V[a-fA-F0-9] *$";
+char LD_V_DT[]= "^ *LD *V[a-fA-F0-9] *\\, *DT *$";
+char LD_V_K[]= "^ *LD *V[a-fA-F0-9] *\\, *K *$";
+char LD_DT_V[]= "^ *LD *DT *\\, *V[a-fA-F0-9] *$";
+char LD_ST_V[]= "^ *LD *ST *\\, *V[a-fA-F0-9] *$";
+char ADD_I_V[]= "^ *ADD *I *\\, *V[a-fA-F0-9] *$";
+char LD_F_V[]= "^ *LD *F *\\, *V[a-fA-F0-9] *$";
+char LD_B_V[]= "^ *LD *B *\\, *V[a-fA-F0-9] *$";
+char LD_I_V[]= "^ *LD *\\[I\\] *\\, *V[a-fA-F0-9] *$";
+char LD_V_I[]= "^ *LD *V[a-fA-F0-9] *\\, *\\[I\\] *$";
 
 // regular expressions
 regex_t CLS_re;
@@ -79,13 +78,27 @@ regex_t LD_F_V_re;
 regex_t LD_B_V_re;
 regex_t LD_I_V_re;
 regex_t LD_V_I_re;
-regex_t LD_V_Q_re;
 
 void compile_instruction_regs(){
-    regcomp(&CLS_re, CLS, REG_ICASE);
-    regcomp(&RET_re, RET, REG_ICASE);
-    regcomp(&SYS_NNN_re , SYS_NNN, REG_ICASE);
-    regcomp(&JP_NNN_re ,JP_NNN, REG_ICASE);
+    int error_code = 0;
+    char error_msg[128];
+
+    if((error_code =regcomp(&CLS_re, CLS, REG_ICASE))) {
+        regerror(error_code, &CLS_re, error_msg, 128);
+        printf("A CLS failed to compile: %s\n", error_msg);
+        exit(1);
+    }
+    if((error_code = regcomp(&RET_re, RET, REG_ICASE))) {
+        regerror(error_code, &CLS_re, error_msg, 128);
+        printf("A RET failed to compile: %s\n", error_msg);
+        exit(1);
+    }
+    if((error_code = regcomp(&SYS_NNN_re, SYS_NNN, REG_ICASE))) {
+        regerror(error_code, &CLS_re, error_msg, 128);
+        printf("A SYS_NNN failed to compile: %s\n", error_msg);
+        exit(1);
+    }
+    regcomp(&JP_NNN_re, JP_NNN, REG_ICASE);
     regcomp(&CALL_NNN_re ,CALL_NNN, REG_ICASE);
     regcomp(&SE_V_NN_re ,SE_V_NN, REG_ICASE);
     regcomp(&SNE_V_NN_re ,SNE_V_NN, REG_ICASE);
@@ -115,7 +128,10 @@ void compile_instruction_regs(){
     regcomp(&ADD_I_V_re ,ADD_I_V, REG_ICASE);
     regcomp(&LD_F_V_re ,LD_F_V, REG_ICASE);
     regcomp(&LD_B_V_re ,LD_B_V, REG_ICASE);
-    regcomp(&LD_I_V_re ,LD_I_V, REG_ICASE);
+    if((error_code = regcomp(&LD_I_V_re ,LD_I_V, REG_ICASE))) {
+        regerror(error_code, &CLS_re, error_msg, 128);
+        printf("A SYS_NNN failed to compile: %s\n", error_msg);
+        exit(1);
+    }
     regcomp(&LD_V_I_re ,LD_V_I, REG_ICASE);
-    regcomp(&LD_V_Q_re ,LD_V_Q, REG_ICASE);
 }
