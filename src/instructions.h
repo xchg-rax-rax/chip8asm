@@ -2,6 +2,7 @@
  *      This file includes all of the regular expressions used to translate 
  *      chip8 assembly instructions into their corresponding opcodes.
  */
+#pragma once
 #include <regex.h> 
 
 // RE strings
